@@ -17,8 +17,7 @@ const Home = () => {
 
   return (
     <div className="max-w-2xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-8 text-center">Welcome to LLM Evaluation Platform</h1>
-      
+      <h1 className="text-3xl font-bold mb-8 text-center text-gray-900 dark:text-white">Welcome to LLM Evaluation Platform</h1>
       <form onSubmit={handleSubmit} className="mb-6">
         <InputField
           label="Enter your text"
@@ -38,7 +37,7 @@ const Home = () => {
       </form>
 
       <Link 
-        className="text-blue-500 hover:text-blue-600 block text-center" 
+        className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 block text-center" 
         to="/evaluate"
       >
         Start Evaluation
