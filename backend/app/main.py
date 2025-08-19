@@ -1,8 +1,8 @@
 # Import FastAPI framework
 from fastapi import FastAPI
 
-# Import API route modules for handling dataset uploads and LLM evaluations
-from app.routes import datasets, evaluation
+# Import API route modules for handling LLM evaluations
+from app.routes import evaluation
 
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -19,10 +19,6 @@ app.add_middleware(
     allow_headers=["*"],  # Allow all headers
 )
 
-
-# Include dataset management routes under the "/datasets" prefix
-# This will handle file uploads, parsing, and validation
-app.include_router(datasets.router, prefix="/datasets", tags=["Dataset Management"])
 
 # Include LLM evaluation routes under the "/evaluation" prefix
 # This will handle processing prompts and querying multiple LLMs

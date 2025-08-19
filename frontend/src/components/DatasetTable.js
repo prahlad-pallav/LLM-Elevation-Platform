@@ -74,14 +74,14 @@ const DatasetTable = () => {
     setError(null);
 
     setLoading(true);
-    try {
+      try {
       // Get responses from both models
       const groqResponse = await evaluatePrompt(userInput, "groq");
       const geminiResponse = await evaluatePrompt(userInput, "gemini");
-
-      const groqText = groqResponse.data.choices?.[0]?.message?.content || JSON.stringify(groqResponse.data);
-      const geminiText = geminiResponse.data.candidates?.[0]?.content?.parts?.[0]?.text || JSON.stringify(geminiResponse.data);
-
+  
+        const groqText = groqResponse.data.choices?.[0]?.message?.content || JSON.stringify(groqResponse.data);
+        const geminiText = geminiResponse.data.candidates?.[0]?.content?.parts?.[0]?.text || JSON.stringify(geminiResponse.data);
+  
       // Update UI with model responses
       setResults((prevResults) => [...prevResults, { 
         prompt: userInput, 
@@ -102,18 +102,18 @@ const DatasetTable = () => {
             gemini_response: geminiText 
           }),
         });
-
+  
         if (!judgmentResponse.ok) {
           throw new Error(`HTTP error! Status: ${judgmentResponse.status}`);
         }
-
+  
         const responseText = await judgmentResponse.text();
-        judgmentData = JSON.parse(responseText);
+          judgmentData = JSON.parse(responseText);
       } catch (error) {
         console.error("Judgment API Error:", error);
         judgmentData = { error: "Failed to get judgment" };
       }
-
+  
       // Update UI with judgment
       setResults((prevResults) =>
         prevResults.map((res, index) =>
@@ -262,7 +262,7 @@ const DatasetTable = () => {
                         Evaluating...
                       </div>
                     ) : "Compare Models"}
-                  </button>
+      </button>
                 </div>
               </>
             )}
@@ -270,7 +270,7 @@ const DatasetTable = () => {
         </div>
 
         {/* Results Section */}
-        {results.length > 0 && (
+      {results.length > 0 && (
           <div className="bg-white rounded-2xl shadow-xl p-6 transform transition-all duration-500">
             <h3 className="text-2xl font-bold text-gray-800 mb-6">Evaluation Results</h3>
             <div className="overflow-x-auto">
@@ -343,8 +343,8 @@ const DatasetTable = () => {
                 </div>
               ))}
             </div>
-          </div>
-        )}
+        </div>
+      )}
       </div>
     </div>
   );
