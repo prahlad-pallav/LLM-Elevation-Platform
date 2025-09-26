@@ -5,6 +5,7 @@ import InputField from "./InputField";
 import AudioInput from "./AudioInput";
 import Tooltip from "./Tooltip";
 import SuggestedPrompts from "./SuggestedPrompts";
+import { API_ENDPOINTS } from "../config/api";
 // import ImageUpload from "./ImageUpload";
 
 const AIEvaluator = () => {
@@ -96,7 +97,7 @@ const AIEvaluator = () => {
       setLlama3ChatHistory(prev => [...prev, userMessage]);
       
       // Get response from Llama3
-      const llama3Response = await fetch("http://localhost:8000/evaluation/chat/llama3/", {
+      const llama3Response = await fetch(API_ENDPOINTS.CHAT_LLAMA3, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: userInput }),
@@ -163,7 +164,7 @@ const AIEvaluator = () => {
       setGptOssChatHistory(prev => [...prev, userMessage]);
       
       // Get response from GPT-OSS
-      const gptOssResponse = await fetch("http://localhost:8000/evaluation/chat/gpt-oss/", {
+      const gptOssResponse = await fetch(API_ENDPOINTS.CHAT_GPT_OSS, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: userInput }),
@@ -230,7 +231,7 @@ const AIEvaluator = () => {
       setDeepseekChatHistory(prev => [...prev, userMessage]);
       
       // Get response from DeepSeek
-      const deepseekResponse = await fetch("http://localhost:8000/evaluation/chat/deepseek/", {
+      const deepseekResponse = await fetch(API_ENDPOINTS.CHAT_DEEPSEEK, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: userInput }),
@@ -315,7 +316,7 @@ const AIEvaluator = () => {
       // Get judgment
       let judgmentData;
       try {
-        const judgmentResponse = await fetch("http://localhost:8000/evaluation/judge/", {
+        const judgmentResponse = await fetch(API_ENDPOINTS.JUDGE, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ 

@@ -5,6 +5,7 @@ import AudioInput from "./AudioInput";
 // import ImageUpload from "./ImageUpload";
 import SuggestedPrompts from "./SuggestedPrompts";
 import WordLimitSelector from "./WordLimitSelector";
+import { API_ENDPOINTS } from "../config/api";
 
 const SimultaneousSearch = () => {
   const { userInput, setUserInput } = useContext(DataContext);
@@ -35,17 +36,17 @@ const SimultaneousSearch = () => {
     try {
       // Send requests to all models simultaneously
       const promises = [
-        fetch("http://localhost:8000/evaluation/run/", {
+        fetch(API_ENDPOINTS.EVALUATION, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ prompt: userInput, model: "gemini", max_words: maxWords }),
         }),
-        fetch("http://localhost:8000/evaluation/run/", {
+        fetch(API_ENDPOINTS.EVALUATION, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ prompt: userInput, model: "gpt-oss", max_words: maxWords }),
         }),
-        fetch("http://localhost:8000/evaluation/run/", {
+        fetch(API_ENDPOINTS.EVALUATION, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ prompt: userInput, model: "deepseek", max_words: maxWords }),

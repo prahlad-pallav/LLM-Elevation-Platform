@@ -5,9 +5,15 @@ services:
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     envVars:
-      - key: GROQ_API_KEY
-        sync: false
       - key: GEMINI_API_KEY
         sync: false
       - key: OPENROUTER_API_KEY
+        sync: false
+  - type: web
+    name: llm-evaluation-frontend
+    env: static
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: ./frontend/build
+    envVars:
+      - key: REACT_APP_API_URL
         sync: false
