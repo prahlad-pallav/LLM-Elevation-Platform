@@ -178,7 +178,7 @@ async def automated_judgment(request: JudgmentRequest):
                 except json.JSONDecodeError:
                     return {"error": "Invalid JSON in response content", "raw_response": content}
             else:
-            return result
+                return result
                 
         except json.JSONDecodeError:
             return {"error": "Invalid JSON response received", "raw_response": response_text}
