@@ -1,6 +1,6 @@
 # LLM Evaluation Platform Backend
 
-FastAPI backend for the LLM Evaluation Platform that integrates with multiple AI models including Groq, Gemini, Llama 3.3, and GPT-OSS.
+FastAPI backend for the LLM Evaluation Platform that integrates with multiple AI models including Gemini, Llama 3.3, GPT-OSS, and DeepSeek V3.
 
 ## Deployment on Render
 
@@ -8,7 +8,6 @@ FastAPI backend for the LLM Evaluation Platform that integrates with multiple AI
 - GitHub account
 - Render account
 - API keys for the following services:
-  - Groq API
   - Gemini API
   - OpenRouter API
 
@@ -30,7 +29,6 @@ FastAPI backend for the LLM Evaluation Platform that integrates with multiple AI
 
 3. **Configure Environment Variables**
    In Render dashboard, go to your service → Environment → Add the following:
-   - `GROQ_API_KEY` - Your Groq API key
    - `GEMINI_API_KEY` - Your Gemini API key
    - `OPENROUTER_API_KEY` - Your OpenRouter API key
 
@@ -63,7 +61,6 @@ uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 
 Create a `.env` file in the backend directory:
 ```env
-GROQ_API_KEY=your_groq_api_key
 GEMINI_API_KEY=your_gemini_api_key
 OPENROUTER_API_KEY=your_openrouter_api_key
 ```

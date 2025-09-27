@@ -5,7 +5,6 @@
 ### 1. API Keys Required
 You need API keys for the following services:
 
-- **Groq API**: Get from [console.groq.com](https://console.groq.com)
 - **Gemini API**: Get from [makersuite.google.com](https://makersuite.google.com)
 - **OpenRouter API**: Get from [openrouter.ai](https://openrouter.ai)
 
@@ -51,7 +50,6 @@ Make sure your code is pushed to GitHub.
 4. **Add Environment Variables:**
    Click "Environment" tab and add:
    ```
-   GROQ_API_KEY=your_groq_api_key_here
    GEMINI_API_KEY=your_gemini_api_key_here
    OPENROUTER_API_KEY=your_openrouter_api_key_here
    ```

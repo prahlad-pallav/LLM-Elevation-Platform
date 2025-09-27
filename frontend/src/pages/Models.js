@@ -3,18 +3,6 @@ import React from "react";
 const Models = () => {
   const models = [
     {
-      name: "Groq (Mixtral-8x7B)",
-      description: "A high-performance language model optimized for speed and efficiency. Built on the Mixtral architecture with 8x7B parameters, it delivers fast inference times while maintaining high-quality responses.",
-      features: [
-        "Ultra-fast inference",
-        "32K context window",
-        "Optimized for real-time applications",
-        "High throughput processing"
-      ],
-      color: "blue",
-      icon: "⚡"
-    },
-    {
       name: "Gemini 2.0 Flash",
       description: "Google's latest multimodal AI model designed for understanding and generating text, images, and other content types. Features advanced reasoning capabilities and creative text generation.",
       features: [
