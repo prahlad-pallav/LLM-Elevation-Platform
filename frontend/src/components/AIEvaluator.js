@@ -242,6 +242,12 @@ const AIEvaluator = () => {
       }
 
       const responseData = await deepseekResponse.json();
+      
+      // Check for error in response
+      if (responseData.error) {
+        throw new Error(responseData.error);
+      }
+      
       const deepseekText = responseData.response || JSON.stringify(responseData);
       
       // Add DeepSeek's response to chat history
@@ -302,7 +308,14 @@ const AIEvaluator = () => {
 
       const geminiText = geminiResponse.data.candidates?.[0]?.content?.parts?.[0]?.text || JSON.stringify(geminiResponse.data);
       const gptOssText = gptOssResponse.data.choices?.[0]?.message?.content || JSON.stringify(gptOssResponse.data);
-      const deepseekText = deepseekResponse.data.choices?.[0]?.message?.content || JSON.stringify(deepseekResponse.data);
+      
+      // Check for DeepSeek error
+      let deepseekText;
+      if (deepseekResponse.data.error) {
+        deepseekText = `Error: ${deepseekResponse.data.error}`;
+      } else {
+        deepseekText = deepseekResponse.data.choices?.[0]?.message?.content || JSON.stringify(deepseekResponse.data);
+      }
 
       // Update UI with model responses
       setResults((prevResults) => [...prevResults, { 

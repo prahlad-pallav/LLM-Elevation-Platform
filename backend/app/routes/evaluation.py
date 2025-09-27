@@ -400,6 +400,18 @@ async def chat_with_deepseek(request: ChatRequest):
         if response.status_code != 200:
             error_text = response.text if response.text else "No response from DeepSeek API"
             print(f"DeepSeek API Error: {error_text}")  # Debug log
+            
+            # Handle rate limiting specifically
+            if response.status_code == 429:
+                try:
+                    error_data = response.json()
+                    if "error" in error_data and "metadata" in error_data["error"]:
+                        raw_error = error_data["error"]["metadata"].get("raw", "")
+                        if "rate-limited" in raw_error.lower():
+                            return {"error": "DeepSeek V3 is currently rate-limited. Please try again in a few minutes or use a different model."}
+                except:
+                    pass
+            
             return {"error": f"DeepSeek API Error: {error_text}"}
 
         # Parse OpenRouter response format

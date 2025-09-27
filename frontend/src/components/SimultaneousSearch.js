@@ -70,6 +70,15 @@ const SimultaneousSearch = () => {
           const response = result.value;
           if (response.ok) {
             response.json().then(data => {
+              // Check for error in response
+              if (data.error) {
+                setResults(prev => ({
+                  ...prev,
+                  [modelName]: { status: 'error', response: '', error: data.error }
+                }));
+                return;
+              }
+              
               let responseText = '';
               
               // Parse response based on model
