@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useData } from "../context/DataContext";
 import InputField from "../components/InputField";
 
 const Home = () => {
   const [inputValue, setInputValue] = useState("");
+  const { setUserInput } = useData();
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
@@ -11,8 +14,10 @@ const Home = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle the input value here
-    console.log("Input value:", inputValue);
+    if (inputValue.trim()) {
+      setUserInput(inputValue);
+      navigate("/evaluate");
+    }
   };
 
   return (
